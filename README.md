@@ -1,3 +1,7 @@
+## TOP React Starter Project
+
+Basic form and list rendering React project from TOP. Focus on use of props, state, components to create functional list. Application of learned tasks with research for things that were hinted at but not explained fully.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
