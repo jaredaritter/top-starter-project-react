@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import Overview from './components/Overview';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      item: 'test',
+      list: ['Make list form work', 'Second item to do'],
+    };
+  }
+
+  handleClick() {
+    console.log('clicked');
+    // ADD NEW ITEM TO LIST ON CLICK
+  }
+
+  render() {
+    return (
+      <div>
+        <form>
+          <input type="text" name="task" placeholder="task" />
+          {/* WHAT DO I REFERENCE FOR THE FORM? */}
+          <button type="button" onClick={this.handleClick}>
+            Submit
+          </button>
+        </form>
+        <Overview list={this.state.list} />
+      </div>
+    );
+  }
 }
 
 export default App;
