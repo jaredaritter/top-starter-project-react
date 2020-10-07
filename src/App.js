@@ -30,15 +30,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
+        <h1>Tiny List</h1>
         {/* CONTROLLED COMPONENT USED FOR REACT FORMS */}
         <form onSubmit={this.handleSubmit}>
           <input
+            className="input"
             type="text"
             value={this.state.temp}
             onChange={this.handleChange}
           />
-          <input type="submit" value="Submit" />
+          <input className="submit" type="submit" value="Submit" />
         </form>
         <Overview list={this.state.list} />
       </div>
