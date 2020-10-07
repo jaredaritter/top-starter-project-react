@@ -6,25 +6,39 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item: 'test',
+      temp: '',
       list: ['Make list form work', 'Second item to do'],
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick() {
-    console.log('clicked');
-    // ADD NEW ITEM TO LIST ON CLICK
+  handleChange(e) {
+    this.setState({
+      temp: e.target.value,
+    });
+  }
+
+  handleSubmit(e) {
+    // WHAT TO POINT TO HERE?
+    this.setState({
+      list: [...this.state.list, this.state.temp],
+      temp: '',
+    });
+    e.preventDefault();
   }
 
   render() {
     return (
       <div>
-        <form>
-          <input type="text" name="task" placeholder="task" />
-          {/* WHAT DO I REFERENCE FOR THE FORM? */}
-          <button type="button" onClick={this.handleClick}>
-            Submit
-          </button>
+        {/* CONTROLLED COMPONENT USED FOR REACT FORMS */}
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.temp}
+            onChange={this.handleChange}
+          />
+          <input type="submit" value="Submit" />
         </form>
         <Overview list={this.state.list} />
       </div>
