@@ -2,6 +2,11 @@
 
 Basic form and list rendering React project from TOP. Focus on use of props, state, components to create functional list. Application of learned tasks with research for things that were hinted at but not explained fully.
 
+Main challenges that required search of React Docs:
+
+- Controlled components to allow React to control state of form and not refresh page on submit.
+- Lists of line items in unordered list using map array method to create each element and assign key.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
