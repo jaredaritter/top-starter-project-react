@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       temp: '',
-      list: ['Make list form work', 'Second item to do'],
+      list: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
