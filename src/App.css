@@ -27,3 +27,30 @@
   margin: 10px;
   font-size: calc(10px + 1vmin);
 }
+
+.fa-minus-circle {
+  margin-left: 10px;
+  font-size: 1.5rem;
+  vertical-align: 2px;
+  transition: transform 0.75s;
+}
+
+.fa-minus-circle:hover {
+  transform: rotate(180deg);
+}
+
+/* .fa-minus-circle:hover {
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  20%,
+  60% {
+    transform: translate(-2px);
+  }
+
+  40%,
+  80% {
+    transform: translate(2px);
+  }
+} */

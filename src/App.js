@@ -4,7 +4,7 @@ import Overview from './components/Overview';
 import './App.css';
 
 // TODO
-// STYLE DELETE BUTTON, USE FONT AWESOME
+// STYLE DELETE BUTTON, USE FONT AWESOME (COMPLETED)
 // ADD EDIT BUTTON
 
 class App extends React.Component {
@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       temp: '',
-      list: [],
+      list: [{ id: '31245', task: 'Test' }],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);

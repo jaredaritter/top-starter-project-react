@@ -6,7 +6,9 @@ function Overview(props) {
   const listItems = list.map((item, i) => {
     return (
       <div key={item.id} id={item.id}>
-        {i + 1}) {item.task} <button onClick={handleDelete}>Delete</button>
+        {i + 1}) {item.task}
+        {'  '}
+        <i className="fas fa-minus-circle fa-xs" onClick={handleDelete}></i>
       </div>
     );
   });
