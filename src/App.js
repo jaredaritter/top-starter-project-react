@@ -3,6 +3,10 @@ import { nanoid } from 'nanoid';
 import Overview from './components/Overview';
 import './App.css';
 
+// TODO
+// STYLE DELETE BUTTON, USE FONT AWESOME
+// ADD EDIT BUTTON
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,9 +26,7 @@ class App extends React.Component {
   }
 
   handleDelete(e) {
-    // TARGET IDENTIFIER OF PARENT NODE FOR REMOVAL
-    // HOW TO TARGET PARENT NODE?
-    // FILTER TO REMOVE FROM LIST
+    // IS USING PARENT ID THE BEST WAY TO TARGET WAY TO REMOVE?
     const parentId = e.target.parentNode.id;
     const newList = this.state.list.filter((a) => {
       if (a.id !== parentId) return a;
@@ -32,7 +34,6 @@ class App extends React.Component {
     this.setState({
       list: newList,
     });
-    // WILL NOT SHOW ON RERENDER AFTER CHANGE
   }
 
   handleSubmit(e) {

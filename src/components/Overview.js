@@ -8,7 +8,7 @@ function Overview(props) {
       <div key={item.id} id={item.id}>
         {i + 1}) {item.task} <button onClick={handleDelete}>Delete</button>
       </div>
-    ); // USING INDEX AS KEY IS NOT RECOMMEND PRACTICE
+    );
   });
   return <ul>{listItems}</ul>;
 }
