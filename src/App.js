@@ -4,27 +4,26 @@ import Overview from './components/Overview';
 import './App.css';
 
 // TODO
-// STYLE DELETE BUTTON, USE FONT AWESOME (COMPLETED)
-// ADD EDIT BUTTON
+// FIX EDIT BUTTON
 
-// THINKING THROUGH THE EDIT PROCESS
-// SUBSTITUTING COMPONENT SEPERATE FROM EDITING STATE IN MAIN FUNCTION?
-// OVERVIEW CLICK FUNCTION SUBS COMPONENT. THAT NEW COMPONENT HAS EDIT FUNCTION FROM APP?
-// SEPERATE PROCESSES.
-//   EXTRACT INTO NEW COMPONENTS
-//   SUB COMPONENT
-//   EDIT STATE
+// THINKING THROUGH THE FIX TO THE EDIT SUBMIT BUTTON
+//   CURRENTLY DELETING (REFRESHING?) WHOLE LIST ON ANY CHANGE TO EDIT FIELD
+//   NOT SURE WHY
+//   LIKELY SOLUTION IS STORING ONCHANGE LOCALLY IN THE EDIT COMPONENT AND THEN HAVING SUBMIT COME FROM APP
+//   MIGHT NOT NEED TEMP IN APP STATE ANY MORE WITH THIS CHANGE
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       temp: '',
-      list: [{ id: '31245', task: 'Test' }],
+      list: [{ id: '31245', task: 'Test', editting: false, temp: '' }],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleEditChange = this.handleEditChange.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -47,9 +46,36 @@ class App extends React.Component {
 
   handleEdit(e) {
     const parentId = e.target.parentNode.id;
+    console.log(parentId);
     const newList = this.state.list.filter((a) => {
       if (a.id === parentId) {
-        a.task = 'Test';
+        a.editting = true;
+      }
+      return a;
+    });
+    this.setState({
+      list: newList,
+    });
+  }
+
+  handleEditChange(e) {
+    const parentId = e.target.parentNode.id;
+    const newList = this.state.list.filter((a) => {
+      if (a.id === parentId) {
+        a.temp = e.target.value;
+      }
+    });
+    this.setState({
+      list: newList,
+    });
+  }
+
+  handleEditSubmit(e) {
+    const parentId = e.target.parentNode.id;
+    const newList = this.state.list.filter((a) => {
+      if (a.id === parentId) {
+        a.task = 'Edit Success';
+        a.editting = false;
       }
       return a;
     });
@@ -61,7 +87,10 @@ class App extends React.Component {
   handleSubmit(e) {
     const id = nanoid(10);
     this.setState({
-      list: [...this.state.list, { id: id, task: this.state.temp }],
+      list: [
+        ...this.state.list,
+        { id: id, task: this.state.temp, editting: false, temp: '' },
+      ],
       temp: '',
     });
     e.preventDefault();
@@ -85,6 +114,8 @@ class App extends React.Component {
           list={this.state.list}
           handleDelete={this.handleDelete}
           handleEdit={this.handleEdit}
+          handleEditChange={this.handleEditChange}
+          handleEditSubmit={this.handleEditSubmit}
         />
       </div>
     );
