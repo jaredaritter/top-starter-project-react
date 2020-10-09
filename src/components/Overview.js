@@ -1,18 +1,27 @@
 import React from 'react';
+import Task from './Task';
+import Edit from './Edit';
 
 // BUILDS UNORDERED LIST FROM PASSED LIST ARRAY
 function Overview(props) {
-  const { list, handleDelete } = props; // DESTRUCTURING FOR PRACTICE. UNNECESSARY.
+  const { list, handleDelete, handleEdit } = props; // DESTRUCTURING FOR PRACTICE. UNNECESSARY.
+  const dummyObj = { id: 'abc', task: 'Dummy Task' };
   const listItems = list.map((item, i) => {
     return (
-      <div key={item.id} id={item.id}>
-        {i + 1}) {item.task}
-        {'  '}
-        <i className="fas fa-minus-circle fa-xs" onClick={handleDelete}></i>
-      </div>
+      <Task
+        item={item}
+        i={i}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     );
   });
-  return <ul>{listItems}</ul>;
+  return (
+    <ul>
+      {listItems}
+      <Edit item={dummyObj} />
+    </ul>
+  );
 }
 
 export default Overview;

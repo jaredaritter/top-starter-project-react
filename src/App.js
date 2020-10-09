@@ -7,6 +7,14 @@ import './App.css';
 // STYLE DELETE BUTTON, USE FONT AWESOME (COMPLETED)
 // ADD EDIT BUTTON
 
+// THINKING THROUGH THE EDIT PROCESS
+// SUBSTITUTING COMPONENT SEPERATE FROM EDITING STATE IN MAIN FUNCTION?
+// OVERVIEW CLICK FUNCTION SUBS COMPONENT. THAT NEW COMPONENT HAS EDIT FUNCTION FROM APP?
+// SEPERATE PROCESSES.
+//   EXTRACT INTO NEW COMPONENTS
+//   SUB COMPONENT
+//   EDIT STATE
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +24,7 @@ class App extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -30,6 +39,19 @@ class App extends React.Component {
     const parentId = e.target.parentNode.id;
     const newList = this.state.list.filter((a) => {
       if (a.id !== parentId) return a;
+    });
+    this.setState({
+      list: newList,
+    });
+  }
+
+  handleEdit(e) {
+    const parentId = e.target.parentNode.id;
+    const newList = this.state.list.filter((a) => {
+      if (a.id === parentId) {
+        a.task = 'Test';
+      }
+      return a;
     });
     this.setState({
       list: newList,
@@ -59,7 +81,11 @@ class App extends React.Component {
           />
           <input className="submit" type="submit" value="Submit" />
         </form>
-        <Overview list={this.state.list} handleDelete={this.handleDelete} />
+        <Overview
+          list={this.state.list}
+          handleDelete={this.handleDelete}
+          handleEdit={this.handleEdit}
+        />
       </div>
     );
   }
