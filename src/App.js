@@ -69,6 +69,10 @@ class App extends React.Component {
   }
 
   handleSubmit(e) {
+    if (!this.state.temp) {
+      e.preventDefault();
+      return;
+    }
     const id = nanoid(10);
     this.setState({
       list: [
