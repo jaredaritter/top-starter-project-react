@@ -4,21 +4,14 @@ import Overview from './components/Overview';
 import './App.css';
 
 // TODO
-// CHANGE EDIT TO USING A FORM SO THAT THE ENTER BUTTON WORKS CORRECTLY FOR SUBMISSION (COMPLETED)
-// IF INPUT IS BLANK THEN DO NOT SUBMIT ANYTHING (COMPLETED)
-// MODIFY INPUT BOX AND FONT SIZE FOR IMPROVED UI AND AESTHETICS (COMPLETED)
-// REMOVE TEMP FROM INDIVIDUAL LIST ITEMS, NO LONGER NEEDED
-// HOST ON GHPAGES
-// UPDATE README WITH EXPLANATION AND RESOURCES
-// EXTRACT FORM FROM APP?
-// REMOVE TEST ITEM FROM STATE.LIST
+// EXTRACT FORM FROM APP? (LATER IF DESIRED, NOT IMPORTANT)
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       temp: '',
-      list: [{ id: '31245', task: 'Test', editting: false, temp: '' }],
+      list: [{ id: '31245', task: 'Test', editting: false }],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -27,12 +20,34 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // -------------------------------------------------------
+  // APP FORM LOGIC
+  // -------------------------------------------------------
   handleChange(e) {
     this.setState({
       temp: e.target.value,
     });
   }
 
+  handleSubmit(e) {
+    if (!this.state.temp) {
+      e.preventDefault();
+      return;
+    }
+    const id = nanoid(10);
+    this.setState({
+      list: [
+        ...this.state.list,
+        { id: id, task: this.state.temp, editting: false },
+      ],
+      temp: '',
+    });
+    e.preventDefault();
+  }
+
+  // ---------------------------------------------------------
+  // CHILD COMPONENT HANDLER LOGIC
+  // ---------------------------------------------------------
   handleDelete(e) {
     // IS USING PARENT ID THE BEST WAY TO TARGET WAY TO REMOVE?
     const parentId = e.target.parentNode.id;
@@ -57,7 +72,6 @@ class App extends React.Component {
     });
   }
 
-  // FORM VERSION
   handleEditSubmit(e, temp) {
     const newList = this.state.list.filter((a) => {
       if (a.id === e.target.id) {
@@ -69,25 +83,12 @@ class App extends React.Component {
     this.setState({
       list: newList,
     });
-    e.preventDefault(); // NEEDED IF USING FORM IN EDIT COMPONENT
-  }
-
-  handleSubmit(e) {
-    if (!this.state.temp) {
-      e.preventDefault();
-      return;
-    }
-    const id = nanoid(10);
-    this.setState({
-      list: [
-        ...this.state.list,
-        { id: id, task: this.state.temp, editting: false, temp: '' },
-      ],
-      temp: '',
-    });
     e.preventDefault();
   }
 
+  // ---------------------------------------------------------
+  // RENDER
+  // ---------------------------------------------------------
   render() {
     return (
       <div className="App">
@@ -114,21 +115,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// OLD CODE AND FUNCTIONS THAT MAY STILL BE USEFUL
-
-// PRE-FORM VERSION
-// handleEditSubmit(e, temp) {
-//   const parentId = e.target.parentNode.id;
-//   const newList = this.state.list.filter((a) => {
-//     if (a.id === parentId) {
-//       a.task = temp;
-//       a.editting = false;
-//     }
-//     return a;
-//   });
-//   this.setState({
-//     list: newList,
-//   });
-//   e.preventDefault(); // NEEDED IF USING FORM IN EDIT COMPONENT
-// }
