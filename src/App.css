@@ -10,6 +10,10 @@
   color: white;
 }
 
+input[type='text'] {
+  font-size: calc(5px + 2vmin);
+}
+
 .input {
   width: 100%;
   height: 56px;

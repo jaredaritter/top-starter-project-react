@@ -5,9 +5,12 @@ import './App.css';
 
 // TODO
 // CHANGE EDIT TO USING A FORM SO THAT THE ENTER BUTTON WORKS CORRECTLY FOR SUBMISSION (COMPLETED)
+// IF INPUT IS BLANK THEN DO NOT SUBMIT ANYTHING (COMPLETED)
+// MODIFY INPUT BOX AND FONT SIZE FOR IMPROVED UI AND AESTHETICS (COMPLETED)
+// HOST ON GHPAGES
+// UPDATE README WITH EXPLANATION AND RESOURCES
+// EXTRACT FORM FROM APP?
 // REMOVE TEST ITEM FROM STATE.LIST
-// IF INPUT IS BLANK THEN DO NOT SUBMIT ANYTHING
-// MODIFY INPUT BOX AND FONT SIZE FOR IMPROVED UI AND AESTHETICS
 
 class App extends React.Component {
   constructor(props) {
@@ -89,7 +92,7 @@ class App extends React.Component {
       <div className="App">
         <h1>Tiny List</h1>
         {/* CONTROLLED COMPONENT USED FOR REACT FORMS */}
-        <form onSubmit={this.handleSubmit}>
+        <form className="app-form" onSubmit={this.handleSubmit}>
           <input
             className="input"
             type="text"
