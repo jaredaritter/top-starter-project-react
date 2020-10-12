@@ -1,21 +1,54 @@
 import React from 'react';
 
-function Edit(props) {
-  return (
-    <div id={props.item.id}>
-      {props.i + 1}){'  '}
-      <input
-        type="text"
-        value={props.item.task}
-        onChange={props.handleEditChange}
-      />
-      <i
-        className="fas fa-plus-circle fa-xs"
-        onClick={props.handleEditSubmit}
-      ></i>
-    </div>
-  );
+class Edit extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: this.props.item.task,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      temp: e.target.value,
+    });
+  }
+
+  render() {
+    return (
+      <div id={this.props.item.id}>
+        {this.props.i + 1}){'  '}
+        <input
+          type="text"
+          value={this.state.temp}
+          onChange={this.handleChange}
+        />
+        <i
+          className="fas fa-plus-circle fa-xs"
+          onClick={this.props.handleEditSubmit}
+        ></i>
+      </div>
+    );
+  }
 }
+
+// function Edit(props) {
+//   return (
+//     <div id={props.item.id}>
+//       {props.i + 1}){'  '}
+//       <input
+//         type="text"
+//         value={props.item.task}
+//         onChange={props.handleEditChange}
+//       />
+//       <i
+//         className="fas fa-plus-circle fa-xs"
+//         onClick={props.handleEditSubmit}
+//       ></i>
+//     </div>
+//   );
+// }
 
 export default Edit;
 

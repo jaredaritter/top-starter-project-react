@@ -22,7 +22,6 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-    this.handleEditChange = this.handleEditChange.bind(this);
     this.handleEditSubmit = this.handleEditSubmit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -52,18 +51,6 @@ class App extends React.Component {
         a.editting = true;
       }
       return a;
-    });
-    this.setState({
-      list: newList,
-    });
-  }
-
-  handleEditChange(e) {
-    const parentId = e.target.parentNode.id;
-    const newList = this.state.list.filter((a) => {
-      if (a.id === parentId) {
-        a.temp = e.target.value;
-      }
     });
     this.setState({
       list: newList,
@@ -114,7 +101,6 @@ class App extends React.Component {
           list={this.state.list}
           handleDelete={this.handleDelete}
           handleEdit={this.handleEdit}
-          handleEditChange={this.handleEditChange}
           handleEditSubmit={this.handleEditSubmit}
         />
       </div>
