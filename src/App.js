@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       temp: '',
-      list: [{ id: '31245', task: 'Test', editting: false }],
+      list: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
