@@ -22,18 +22,17 @@ class Edit extends React.Component {
 
   render() {
     return (
-      <div id={this.props.item.id}>
+      <form onSubmit={this.handleSubmitClick} id={this.props.item.id}>
         {this.props.i + 1}){'  '}
         <input
           type="text"
           value={this.state.temp}
           onChange={this.handleChange}
         />
-        <i
-          className="fas fa-plus-circle fa-xs"
-          onClick={this.handleSubmitClick}
-        ></i>
-      </div>
+        <button type="submit" className="edit-button">
+          <i className="fas fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
     );
   }
 }

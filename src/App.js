@@ -4,7 +4,7 @@ import Overview from './components/Overview';
 import './App.css';
 
 // TODO
-// CHANGE EDIT TO USING A FORM SO THAT THE ENTER BUTTON WORKS CORRECTLY FOR SUBMISSION
+// CHANGE EDIT TO USING A FORM SO THAT THE ENTER BUTTON WORKS CORRECTLY FOR SUBMISSION (COMPLETED)
 // REMOVE TEST ITEM FROM STATE.LIST
 // IF INPUT IS BLANK THEN DO NOT SUBMIT ANYTHING
 // MODIFY INPUT BOX AND FONT SIZE FOR IMPROVED UI AND AESTHETICS
@@ -53,10 +53,10 @@ class App extends React.Component {
     });
   }
 
+  // FORM VERSION
   handleEditSubmit(e, temp) {
-    const parentId = e.target.parentNode.id;
     const newList = this.state.list.filter((a) => {
-      if (a.id === parentId) {
+      if (a.id === e.target.id) {
         a.task = temp;
         a.editting = false;
       }
@@ -65,6 +65,7 @@ class App extends React.Component {
     this.setState({
       list: newList,
     });
+    e.preventDefault(); // NEEDED IF USING FORM IN EDIT COMPONENT
   }
 
   handleSubmit(e) {
@@ -105,3 +106,21 @@ class App extends React.Component {
 }
 
 export default App;
+
+// OLD CODE AND FUNCTIONS THAT MAY STILL BE USEFUL
+
+// PRE-FORM VERSION
+// handleEditSubmit(e, temp) {
+//   const parentId = e.target.parentNode.id;
+//   const newList = this.state.list.filter((a) => {
+//     if (a.id === parentId) {
+//       a.task = temp;
+//       a.editting = false;
+//     }
+//     return a;
+//   });
+//   this.setState({
+//     list: newList,
+//   });
+//   e.preventDefault(); // NEEDED IF USING FORM IN EDIT COMPONENT
+// }
