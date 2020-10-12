@@ -4,13 +4,7 @@ import Overview from './components/Overview';
 import './App.css';
 
 // TODO
-// FIX EDIT BUTTON
-
-// THINKING THROUGH THE FIX TO THE EDIT SUBMIT BUTTON
-//   CURRENTLY DELETING (REFRESHING?) WHOLE LIST ON ANY CHANGE TO EDIT FIELD
-//   NOT SURE WHY
-//   LIKELY SOLUTION IS STORING ONCHANGE LOCALLY IN THE EDIT COMPONENT AND THEN HAVING SUBMIT COME FROM APP
-//   MIGHT NOT NEED TEMP IN APP STATE ANY MORE WITH THIS CHANGE
+// CHANGE EDIT TO USING A FORM SO THAT THE ENTER BUTTON WORKS CORRECTLY FOR SUBMISSION
 
 class App extends React.Component {
   constructor(props) {
@@ -45,7 +39,6 @@ class App extends React.Component {
 
   handleEdit(e) {
     const parentId = e.target.parentNode.id;
-    console.log(parentId);
     const newList = this.state.list.filter((a) => {
       if (a.id === parentId) {
         a.editting = true;
@@ -57,11 +50,11 @@ class App extends React.Component {
     });
   }
 
-  handleEditSubmit(e) {
+  handleEditSubmit(e, temp) {
     const parentId = e.target.parentNode.id;
     const newList = this.state.list.filter((a) => {
       if (a.id === parentId) {
-        a.task = 'Edit Success';
+        a.task = temp;
         a.editting = false;
       }
       return a;
